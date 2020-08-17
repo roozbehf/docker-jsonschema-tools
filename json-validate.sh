@@ -6,7 +6,6 @@
 #
 
 DOCKER_IMAGE=theroozbeh/json-schema:latest
-DOCKER_IMAGE=json-schema:local
 
 docker run \
     --rm -it \
