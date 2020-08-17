@@ -1,0 +1,30 @@
+---
+type: object
+properties:
+  books:
+    type: array
+    description: 'list of books'
+    items: 
+        '$ref': '#/definitions/book'
+
+definitions:
+  book:
+    type: object
+    required:
+    - title
+    - author
+    - year
+    properties:
+      title: 
+        type: string
+        example: 'Free Will'
+        description: 'title of the book'
+      author:
+        type: string
+        description: 'name(s) of the author(s)'
+      year:
+        type: number
+        description: 'publication year'
+      isbn:
+        type: string
+        description: 'ISBN number of the book'
