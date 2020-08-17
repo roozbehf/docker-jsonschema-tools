@@ -1,8 +1,10 @@
-# JSON Tools CI Build Image
+# JSON Schema Tools
 
 This is an image for validating JSON object against a JSON schema definition. 
 
 ## Examples
+
+See the [`examples`](examples) directory for examples. 
 
 To validate a JSON Schema file in YAML:
 ```
@@ -17,5 +19,5 @@ json-validate.sh schema.yaml object.json
 ## Build Image
 You can build the image locally by running `make package`. 
 
-Please refer to the Makefile for the details. 
+Please refer to the [`Makefile`](Makefile) for the details. 
 
