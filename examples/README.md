@@ -11,11 +11,9 @@
 Validate the schema:
 ```
 $ json-validate.sh schema.yml
-All good.
 ```
 
 Validate the object against the schema:
 ```
 $ json-validate.sh schema.yml valid-object.json 
-All good.
 ```

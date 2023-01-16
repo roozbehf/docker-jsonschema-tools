@@ -1,3 +1,9 @@
+# 
+# json-schema utility image
+# (c) 2018-2023 Roozbeh Farahbod, roozbeh.ca 
+# https://github.com/roozbehf/docker-json-schema
+#
+
 FROM golang:1.19-alpine
 LABEL maintainer="Roozbeh Farahbod, roozbeh.ca"
 
