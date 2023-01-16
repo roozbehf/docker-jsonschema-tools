@@ -1,0 +1,13 @@
+---
+# 
+# Example of a JSON Schema definiton of a timestamp field
+# (c) 2018-2023 Roozbeh Farahbod, roozbeh.ca
+#
+
+title: Timestamp
+description: A timestamp data object
+
+type: string
+description: 'Date-time according to ISO-8601, example: 2012-04-23T18:25:43.511Z'
+
+

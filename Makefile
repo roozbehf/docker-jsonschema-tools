@@ -1,8 +1,10 @@
 #
 # Makefile for the docker image
 #
-# Copyright (c) 2016-2020 Roozbeh Farahbod
+# Copyright (c) 2016-2023 Roozbeh Farahbod
 #
+
+.DEFAULT_GOAL:=build
 
 # --- Load image name and version
 IMAGE_NAME=$(shell grep IMAGE MANIFEST | cut -d '=' -f2)
@@ -27,7 +29,6 @@ else
 	FULL_IMAGE_NAME=$(IMAGE_NAME)
 endif
 
-
 # --- Common Targets
 
 # make sure test, build, and clean do not refer to files or folders
@@ -50,13 +51,19 @@ destroy: stop
 	docker ps -a -q --filter ancestor=$(FULL_IMAGE_NAME) | xargs -r echo | xargs -r docker rm
 
 # builds a docker image
-package: 
+build: 
 	docker build --pull --force-rm --tag $(IMAGE_NAME)\:$(TAG) .
 
-test:
-	@echo Nothing to test.
+# tests the image
+test: build
+	docker run \
+    	--rm -it \
+    	--net="none" \
+    	-v `pwd`:/pg \
+    	-u `id -u` \
+    	$(IMAGE_NAME)\:$(TAG) test/schema/event.yml test/event-object-pass.json
 
-push: package
+push: build
 ifeq "$(PUSH_CONFIRM)" "yes"
 	docker tag $(IMAGE_NAME)\:$(TAG) $(FULL_IMAGE_NAME)\:$(TAG)
 	docker tag $(IMAGE_NAME)\:$(TAG) $(FULL_IMAGE_NAME)\:latest

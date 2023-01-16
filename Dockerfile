@@ -1,5 +1,8 @@
-FROM golang:1.13.1-alpine3.10
-LABEL maintainer="tooz technologies"
+FROM golang:1.19-alpine
+LABEL maintainer="Roozbeh Farahbod, roozbeh.ca"
+
+ARG JSONSCHEMA2POJO_VER=1.1.2
+ARG JSONSCHEMA_CMD_JV_VER=v0.3.1
 
 # --- Install command-line tools
 RUN apk update && \
@@ -11,30 +14,20 @@ RUN apk update && \
     make \
     zip \
     bzip2 \
-    unzip
+    unzip \
+    yq 
 
 # --- Install 'jv' from santhosh-tekuri/jsonschema
-RUN go get -u github.com/santhosh-tekuri/jsonschema/cmd/jv
+RUN go install github.com/santhosh-tekuri/jsonschema/cmd/jv@${JSONSCHEMA_CMD_JV_VER}
 ENV PATH $GOPATH/bin:$PATH
-
-# --- Install yaml2json
-RUN go get github.com/bronze1man/yaml2json
 
 # --- Install jsonschema2pojo
 RUN mkdir /download && \
     cd /download && \
-    wget https://github.com/joelittlejohn/jsonschema2pojo/releases/download/jsonschema2pojo-1.0.1/jsonschema2pojo-1.0.1.zip && \
-    unzip jsonschema2pojo-1.0.1.zip
-RUN chmod +x /download/jsonschema2pojo-1.0.1/bin/*
-ENV PATH /download/jsonschema2pojo-1.0.1/bin:$PATH
-
-# --- Install JSON Pretty Printer
-RUN go get github.com/jmhodges/jsonpp
-
-# --- Install NodeJS
-RUN apk add nodejs nodejs-npm
-
-RUN mkdir -p /pg
+    wget https://github.com/joelittlejohn/jsonschema2pojo/releases/download/jsonschema2pojo-${JSONSCHEMA2POJO_VER}/jsonschema2pojo-${JSONSCHEMA2POJO_VER}.zip && \
+    unzip jsonschema2pojo-${JSONSCHEMA2POJO_VER}.zip
+RUN chmod +x /download/jsonschema2pojo-${JSONSCHEMA2POJO_VER}/bin/*
+ENV PATH /download/jsonschema2pojo-${JSONSCHEMA2POJO_VER}/bin:$PATH
 
 COPY files/validate.sh /usr/bin/validate.sh
 ENTRYPOINT ["/usr/bin/validate.sh"]

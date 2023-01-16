@@ -1,0 +1,29 @@
+---
+# 
+# JSON Schema Example Repo 
+# (c) 2018-2023 Roozbeh Farahbod, roozbeh.ca
+#
+# Example of a JSON Schema definiton of an event object
+#
+
+title: Event
+description: Event log object
+
+type: object
+properties: 
+  uuid: 
+    type: string
+    description: unique Id of the event as a UUID
+  type: 
+    type: string
+    description: event type
+  time:
+    $ref: 'field_time.yml'
+  userId: 
+    type: string
+    description: Id of the user linked to this event
+
+required:
+  - uuid
+  - type
+  - time
