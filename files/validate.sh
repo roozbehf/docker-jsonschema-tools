@@ -40,7 +40,7 @@ cd ${ROOT_DIR}
 
 # convert all referenced YAML files 
 DIR_NAME=`dirname ${YAML_SCHEMA}`
-cat ${YAML_SCHEMA}  | grep "\$ref" | sed 's/^[\t\ ]*$ref:\ //g' | sed "s/\'//g" | while read yamlFile; do $0 "${DIR_NAME}/${yamlFile}"; done
+cat ${YAML_SCHEMA}  | grep "\$ref" | grep "ya\?ml" | sed 's/^[\t\ ]*$ref:\ //g' | sed "s/\'//g" | while read yamlFile; do $0 "${DIR_NAME}/${yamlFile}"; done
 
 yaml2json ${YAML_SCHEMA}
 
