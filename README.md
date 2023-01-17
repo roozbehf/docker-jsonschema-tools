@@ -19,7 +19,10 @@ To validate a JSON object agains a schema:
 ./validate-json.sh examples/schema.yml examples/valid-object.json 
 ```
 
-## Build Image
+## Docker Image
+A publicly available built image is available on Dockerhub at [theroozbeh/jsonschema-tools](https://hub.docker.com/repository/docker/theroozbeh/jsonschema-tools/general)
+
+### Build Image
 You can build the image locally by running `make build`. 
 
 Please refer to the [`Makefile`](Makefile) for the details. 
