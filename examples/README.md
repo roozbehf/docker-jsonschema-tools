@@ -10,10 +10,10 @@
 
 Validate the schema:
 ```
-$ json-validate.sh schema.yml
+$ validate-json.sh schema.yml
 ```
 
 Validate the object against the schema:
 ```
-$ json-validate.sh schema.yml valid-object.json 
+$ validate-json.sh schema.yml valid-object.json 
 ```

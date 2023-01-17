@@ -11,12 +11,12 @@ See the [`examples`](examples) directory for examples.
 
 To validate a JSON Schema file in YAML:
 ```
-./json-validate.sh examples/schema.yml
+./validate-json.sh examples/schema.yml
 ```
 
 To validate a JSON object agains a schema:
 ```
-./json-validate.sh examples/schema.yml examples/valid-object.json 
+./validate-json.sh examples/schema.yml examples/valid-object.json 
 ```
 
 ## Build Image
