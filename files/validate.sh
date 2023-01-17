@@ -10,13 +10,16 @@
 YAML_SCHEMA="$1"
 JSON_OBJ_FILE="$2"
 ROOT_DIR=/pg
-OUTPUT_DIR=${ROOT_DIR}/json-schema-output
+OUTPUT_SUB_DIR=json-schema-output
+OUTPUT_DIR=${ROOT_DIR}/${OUTPUT_SUB_DIR}
 
+# show usage
 function showUsage() {
     echo "Usage: validate.sh <yaml-schema> [json-file]"
     exit 1
 }
 
+# convert yaml to json 
 function yaml2json() {
     YAML2JSON="yq --prettyPrint --output-format json ."
 
@@ -30,7 +33,7 @@ function yaml2json() {
     FILENAME=`basename "${YAML_SCHEMA}"`
     JSON_SCHEMA_FILE="${OUTPUT_DIR}/${FILENAME%%.*}.json"
 
-    echo "Converting '${YAML_SCHEMA}' to '${JSON_SCHEMA_FILE}'..."
+    echo "Converting '${YAML_SCHEMA}'..."
     cat "${YAML_SCHEMA}" | ${YAML2JSON} | sed 's/\.yml/.json/g' | sed 's/\.yaml/.json/g' > "${JSON_SCHEMA_FILE}"
 }
 
@@ -61,10 +64,10 @@ then
     if [ $? -eq 0 ]
     then
         echo "✅ '${JSON_OBJ_FILE}' seems to be valid with respect to the schema."
-        exit 0
     else
         echo "❌ '${JSON_OBJ_FILE}' validataion failed."
         exit 1
     fi
 fi
 
+echo "Converted files are stored in '${OUTPUT_SUB_DIR}'."
