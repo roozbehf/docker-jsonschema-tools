@@ -9,12 +9,12 @@ This repository provides a docker image for:
 
 See the [`examples`](examples) directory for examples. 
 
-To validate a JSON Schema file in YAML:
+To validate a JSON schema file in YAML:
 ```
 ./validate-json.sh examples/schema.yml
 ```
 
-To validate a JSON object agains a schema:
+To validate a JSON object against a schema:
 ```
 ./validate-json.sh examples/schema.yml examples/valid-object.json 
 ```
