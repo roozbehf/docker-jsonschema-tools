@@ -31,13 +31,13 @@ function yaml2json() {
     cd ${ROOT_DIR}
 
     FILENAME=`basename "${YAML_SCHEMA}"`
-    JSON_SCHEMA_FILE="${OUTPUT_DIR}/${FILENAME%%.*}.json"
+    JSON_SCHEMA_FILE="${OUTPUT_DIR}/${FILENAME%.*}.json"
 
     echo "Converting '${YAML_SCHEMA}'..."
     cat "${YAML_SCHEMA}" | ${YAML2JSON} | sed 's/\.yml/.json/g' | sed 's/\.yaml/.json/g' > "${JSON_SCHEMA_FILE}"
 }
 
-rm -rf ${OUTPUT_DIR}/*
+# rm -rf ${OUTPUT_DIR}/*
 mkdir -p ${OUTPUT_DIR}
 cd ${ROOT_DIR}
 
