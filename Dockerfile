@@ -35,5 +35,8 @@ RUN mkdir /download && \
 RUN chmod +x /download/jsonschema2pojo-${JSONSCHEMA2POJO_VER}/bin/*
 ENV PATH /download/jsonschema2pojo-${JSONSCHEMA2POJO_VER}/bin:$PATH
 
+# --- Install gojsonschema
+RUN go install github.com/atombender/go-jsonschema/cmd/gojsonschema@latest
+
 COPY files/validate.sh /usr/bin/validate.sh
 ENTRYPOINT ["/usr/bin/validate.sh"]

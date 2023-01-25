@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and
 follows the convention of [Keep A Changelog](http://keepachangelog.com/).
 
+## 1.2.0
+* Add: `gojsonschema` to produce go struct from JSON schema
+
 ## 1.1.3
 * Fix: file handling issues
 
