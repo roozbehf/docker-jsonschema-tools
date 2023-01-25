@@ -24,6 +24,8 @@ properties:
   userId: 
     type: string
     description: Id of the user linked to this event
+  metaInfo: 
+    type: object
 
 required:
   - uuid
